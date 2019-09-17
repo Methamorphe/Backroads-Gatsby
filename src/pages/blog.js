@@ -1,16 +1,26 @@
 import React from "react"
-import { Link } from "gatsby"
 import Layout from "../components/Layout"
-import Images from "../examples/Images"
+import StyledHero from "../components/StyledHero"
+import { graphql } from "gatsby"
 
-const blog = () => {
+const blog = ({ data }) => {
   return (
     <Layout>
-      Blog page
-      <Link to="/">Back home</Link>
-      <Images />
+      <StyledHero img={data.blogBcg.childImageSharp.fluid}></StyledHero>
     </Layout>
   )
 }
 
 export default blog
+
+export const query = graphql`
+  {
+    blogBcg: file(relativePath: { eq: "blogBcg.jpeg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`
