@@ -20,7 +20,7 @@ const getTours = graphql`
           }
           images {
             fluid {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid
             }
           }
           contentful_id
